@@ -20,7 +20,7 @@ This project analyzes the 2021 Formula 1 season through a relational database mo
 Relational model with 5 normalized tables: **Drivers**, **Constructors**, **Circuits**, **Grand Prix**, and **Results**, connected through primary/foreign keys (driverId, constructorId, circuitId, grandprixId).
 
 ![E-R Diagram] 
-https://imgur.com/a/7XD7vll
+e-r-diagram.png
 
 ## SQL Queries
 Five business questions were answered using SQL (JOINs, GROUP BY, aggregations):
