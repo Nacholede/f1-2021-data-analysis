@@ -64,7 +64,7 @@ CALCULATE(
     COUNTROWS(resultados),
     resultados[grid] = 1
 )
-```
+
 
 ## Dashboard
 Two-page interactive Power BI report:
