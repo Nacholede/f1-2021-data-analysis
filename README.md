@@ -19,63 +19,11 @@ This project analyzes the 2021 Formula 1 season through a relational database mo
 ## Data Model
 Relational model with 5 normalized tables: **Drivers**, **Constructors**, **Circuits**, **Grand Prix**, and **Results**, connected through primary/foreign keys (driverId, constructorId, circuitId, grandprixId).
 
-![E-R Diagram] 
-e-r-diagram.png
-
-## SQL Queries
-Five business questions were answered using SQL (JOINs, GROUP BY, aggregations):
-1. Which driver won at each circuit?
-2. Final Constructors' Championship standings
-3. Youngest driver on the grid
-4. Which drivers won races during the season?
-5. Final Drivers' Championship standings
-
-## DAX Measures (Power BI)
-
-Total Puntos Piloto = SUM(resultados[points])
-
-Victorias = 
-CALCULATE(
-    COUNTROWS(resultados),
-    resultados[position] = 1
-)
-
-Posición Promedio = AVERAGE(resultados[position])
-
-Campeon 2021 = 
-VAR TablaPuntos = 
-    SUMMARIZE(
-        pilotos,
-        pilotos[driverId],
-        "Puntos2021", [Total Puntos Piloto]
-    )
-VAR CampeonRow = 
-    TOPN(1, TablaPuntos, [Puntos2021], DESC)
-VAR NombreCampeon = 
-    CALCULATE(
-        MAX(pilotos[forename]) & " " & MAX(pilotos[surname]),
-        KEEPFILTERS(CampeonRow)
-    )
-RETURN
-    NombreCampeon
-
-Pole Positions = 
-CALCULATE(
-    COUNTROWS(resultados),
-    resultados[grid] = 1
-)
-
-
 ## Dashboard
 Two-page interactive Power BI report:
 
 **Page 1 — Season Overview:** championship leaders, points evolution, constructor/driver standings
 **Page 2 — Driver Deep-Dive:** DNFs, podiums, pole positions, consistency breakdown per selected driver
-
-![Season Overview](images/dashboard-overview.png)
-![Driver Deep-Dive](images/dashboard-driver.png)
-
-🔗 **[View live interactive dashboard](#)** *(Power BI Service link)*
 
 ## Key Findings
 - Max Verstappen won the 2021 Drivers' Championship by just 3 points over Lewis Hamilton (388 vs. 385), driven by a higher win count (10 vs. 8)
